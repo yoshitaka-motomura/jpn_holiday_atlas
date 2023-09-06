@@ -1,0 +1,87 @@
+
+[
+    {
+        "name": "元旦",
+        "date": "01/01",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "成人の日",
+        "date": "",
+        "relative": true,
+        "condition": "january,2,monday"
+    },
+    {
+        "name": "建国記念の日",
+        "date": "2/11",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "天皇誕生日",
+        "date": "2/23",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "昭和の日",
+        "date": "4/29",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "憲法記念日",
+        "date": "5/3",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "みどりの日",
+        "date": "5/4",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "こどもの日",
+        "date": "5/5",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "海の日",
+        "date":"",
+        "relative": true,
+        "condition": "july,3,monday"
+    },
+    {
+        "name": "山の日",
+        "date":"8/11",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "敬老の日",
+        "date":"",
+        "relative": true,
+        "condition": "sep,3,monday"
+    },
+    {
+        "name": "スポーツの日",
+        "date":"",
+        "relative": true,
+        "condition": "oct,2,monday"
+    },
+    {
+        "name": "文化の日",
+        "date":"11/3",
+        "relative": false,
+        "condition": null
+    },
+    {
+        "name": "勤労感謝の日",
+        "date":"11/23",
+        "relative": false,
+        "condition": null
+    }
+]
