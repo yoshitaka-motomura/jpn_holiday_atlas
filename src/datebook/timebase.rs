@@ -26,8 +26,8 @@
 use csv;
 #[allow(unused_imports)]
 use anyhow::{Result, Error};
-const BASE_DATA: &[u8] = include_bytes!("base.csv");
-const BASE_EQUINOX: &[u8] = include_bytes!("equinox_base_dates.csv");
+const BASE_DATA: &[u8] = include_bytes!("../resources/base.csv");
+const BASE_EQUINOX: &[u8] = include_bytes!("../resources/equinox_base_dates.csv");
 
 #[derive(Debug)]
 pub struct Condition {
@@ -42,6 +42,18 @@ pub struct Condition {
     pub date: Option<String>,
     pub relative: bool,
     pub condition: Option<Condition>,
+}
+
+#[derive(Debug)]
+pub struct EquinoxDay {
+    pub name: String,
+    pub date: String,
+}
+
+#[derive(Debug)]
+pub struct Equinox {
+    pub year: u32,
+    pub equinox: Vec<EquinoxDay>,
 }
 // List of Japanese Holidays throughout the Year
 #[allow(dead_code)]
@@ -82,25 +94,37 @@ pub fn get_schedule()-> Result<Vec<BaseHolyday>> {
 }
 
 //　Basic data on Japanese national holidays, the vernal equinox and autumnal equinox, will be returned.
-pub fn get_equinox_from_year(year: u32) {
-    let mut equinox_dates: Vec<String> = Vec::new();
+#[allow(dead_code)]
+pub fn get_equinox_dates()->Result<Vec<Equinox>> {
+    let mut equinox_dates: Vec<Vec<String>> = Vec::new();
     let mut reader = csv::Reader::from_reader(BASE_EQUINOX);
-
+    let mut records: Vec<Equinox> = Vec::new();
     for result in reader.records() {
         match result {
             Ok(record) => {
                 let m: Vec<String> = record.iter().map(|x| x.to_string()).collect();
-                if m[0].parse::<u32>().unwrap() == year {
-                    equinox_dates = m;
-                }
+                equinox_dates.push(m);
             },
             Err(err) => println!("{:?}", err),
         }
     }
-
-    equinox_dates.remove(0);
-    for day in equinox_dates {
-        println!("{}", day);
+    for date in equinox_dates {
+        let year = date[0].parse::<u32>().unwrap();
+        let day = Equinox {
+            year: year,
+            equinox: vec![
+                EquinoxDay {
+                    name: "春分の日".to_string(),
+                    date: date[1].to_string(),
+                },
+                EquinoxDay {
+                    name: "秋分の日".to_string(),
+                    date: date[2].to_string(),
+                },
+            ],
+        };
+        records.push(day);
     }
+    Ok(records)
 }
 

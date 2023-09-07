@@ -2,9 +2,11 @@
 // Compare this snippet from src/datebook/mod.rs:
 
 mod datebook;
-#[allow(unused_imports)]
-use datebook::timebase::{get_schedule, get_equinox_from_year};
+use datebook::calendar::OutputFormat;
+use datebook::calendar::holiday;
 fn main() {
-    let d = get_equinox_from_year(2020);
+    let year = 2024;
+    let format = OutputFormat::JSON;
+    let d = holiday(format, year);
     println!("{:?}", d);
 }
